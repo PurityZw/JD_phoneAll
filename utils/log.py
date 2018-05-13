@@ -2,6 +2,8 @@
 import sys
 import logging
 
+# 封装log日志工具
+
 # 默认的配置
 DEFAULT_LOG_LEVEL = logging.INFO    # 默认等级
 DEFAULT_LOG_FMT = '%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s: %(message)s'   # 默认日志格式
