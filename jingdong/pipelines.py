@@ -32,8 +32,11 @@ class JingdongPipeline(object):
         # 保存图片至文件夹
         get_img = gevent.spawn(self.save_image_in_dir, image_name, image_data)
         get_img.join()
-        # self.save_image_in_dir(image_name, image_data)
         print ('*******item*******', image_name)
+
+        # 删除广告信息
+        if item['ad']:
+            raise DropItem(item)
 
         # item数据处理
         comment = item['comment_num']

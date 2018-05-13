@@ -2,7 +2,7 @@
 import scrapy
 from jingdong.items import JingdongItem
 from scrapy.http.request import Request
-from jingdong.log import logger
+from utils.log import logger
 
 
 class PhoneAllSpider(scrapy.Spider):
@@ -48,6 +48,8 @@ class PhoneAllSpider(scrapy.Spider):
             print '*'*30, jd['shop_link']
             # 二手链接(存在返回链接, 否则返回None)
             jd['second_link'] = item.xpath(".//div[@class='p-commit']/a/@href").extract_first()
+            # 广告
+            jd['ad'] = item.xpath('.//span[@class="p-promo-flag"]/text()').extract_first()
 
             # 拼接前30pid,用来ajax请求发送
             pid_list.append(jd['pid'])

@@ -18,4 +18,4 @@ class JingdongItem(scrapy.Item):
     shop_name = scrapy.Field()
     shop_link = scrapy.Field()
     second_link = scrapy.Field()
-    # time = scrapy.Field()
+    ad = scrapy.Field()
