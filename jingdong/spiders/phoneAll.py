@@ -3,9 +3,10 @@ import scrapy
 from jingdong.items import JingdongItem
 from scrapy.http.request import Request
 from utils.log import logger
+from scrapy_redis.spiders import RedisSpider
 
 
-class PhoneAllSpider(scrapy.Spider):
+class PhoneAllSpider(RedisSpider):
     name = 'phoneAll'
     allowed_domains = ['jd.com']
 
@@ -15,9 +16,10 @@ class PhoneAllSpider(scrapy.Spider):
     base_url = 'https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&page={}'
     next_url = 'https://search.jd.com/s_new.php?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&cid2=653&cid3=655&page={}&s=27&scrolling=y&log_id=1526030906.11309&tpl=3_M&show_items={}'
 
-    def start_requests(self):
-        start_url = self.base_url.format(self.page)
-        yield Request(start_url, callback=self.parse)
+    redis_key = 'phoneallspider:start_urls'
+    # def start_requests(self):
+    #     start_url = self.base_url.format(self.page)
+    #     yield Request(start_url, callback=self.parse)
 
     def parse(self, response):
         # 用来存放所有的pid, 拼接ajax时需要使用
