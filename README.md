@@ -1,6 +1,8 @@
 # JD_phoneAll
 爬取京东手机搜索页面所有手机的信息, 破解京东动态请求加密规则
 
+
+### 页面请求规则
 京东
 手机 搜索页面
 参数：
@@ -10,7 +12,7 @@ https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&page=1
 页码规律：
 page=页数*2 - 1
 
-重点：
+## 重点：
 请求奇数页会获得30个id
 一页一共60个商品信息
 如果想要获得剩下30个商品信息需要发送ajax请求：
@@ -20,3 +22,5 @@ https://search.jd.com/s_new.php?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&qrst=1&rt=1
 page：偶数页码
 show_items：是之前30个商品的 li 标签中的 data-pid 的值
 
+
+### 数据保存方式为:csv文件
